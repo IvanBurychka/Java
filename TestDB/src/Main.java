@@ -28,33 +28,14 @@ public class Main {
 								COLUMN_PHONE + " integer, " +
 								COLUMN_EMAIL + " text)");
 			
-			statement.execute("INSERT INTO " + TABLE_CONTACTS + 
-							" ( " + COLUMN_NAME + ", " + 
-									COLUMN_PHONE + ", " + 
-									COLUMN_EMAIL + 
-							  ") " +
-								   "VALUES ('Tim', 6545678, 'tim@email.com')" );
 			
-			statement.execute("INSERT INTO " + TABLE_CONTACTS + 
-							" ( " + COLUMN_NAME + ", " + 
-									COLUMN_PHONE + ", " + 
-									COLUMN_EMAIL + 
-							  ") " +
-								   "VALUES ('Joe', 45632, 'joe@enywhere.com')" );
+			insertContact(statement, "Tim", 6545678, "tim@email.com");
 			
-			statement.execute("INSERT INTO " + TABLE_CONTACTS + 
-							" ( " + COLUMN_NAME + ", " + 
-									COLUMN_PHONE + ", " + 
-									COLUMN_EMAIL + 
-							  ") " +
-								   "VALUES ('Jane', 4829484, 'jane@somewhere.com')" );
+			insertContact(statement, "Joe", 45632, "joe@enywhere.com");
 			
-			statement.execute("INSERT INTO " + TABLE_CONTACTS + 
-							" ( " + COLUMN_NAME + ", " + 
-									COLUMN_PHONE + ", " + 
-									COLUMN_EMAIL + 
-							  ") " +
-								   "VALUES ('Fido', 9038, 'dog@email.com')" );
+			insertContact(statement, "Jane", 4829484, "jane@somewhere.com" );
+			
+			insertContact(statement, "Fido", 9038, "dog@email.com" );
 			
 			statement.execute("UPDATE " + TABLE_CONTACTS + " SET " + COLUMN_PHONE + "=556678 WHERE " + COLUMN_NAME + "='Jane'");
 			statement.execute("DELETE FROM " + TABLE_CONTACTS + " WHERE " + COLUMN_NAME + "='Joe'");
@@ -70,9 +51,20 @@ public class Main {
 			
 		} catch (SQLException e) {
 			System.out.println("Something is wrong: " + e.getMessage());
+			e.printStackTrace();
 		} 
 		
 		
 	}
+	
+	public static void insertContact(Statement statement, String name, int phone, String email) throws SQLException {
+		statement.execute("INSERT INTO " + TABLE_CONTACTS + 
+				" (" + COLUMN_NAME + ", " + 
+						COLUMN_PHONE + ", " + 
+						COLUMN_EMAIL + 
+				  ") " +
+					   "VALUES ('" + name + "', " + phone + ", '" + email + "')");
+	}
+	
 	
 }
