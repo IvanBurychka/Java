@@ -33,8 +33,24 @@ public class Main {
 			} 
 		}
 		
-		System.out.println("ORDER BY artists.name, albums.name COLLATE NOCASE ASC;");
-		System.out.println(Datasource.QUERY_ARTIST_FOR_SONG_SORT);
+		List<SongArtist> songArtists = datasource.queryArtistForSong("111Go Your Own Way", Datasource.ORDER_BY_ASC);
+		
+		if (songArtists.size() == 0) {
+			System.out.println("No song");
+		} else {
+			for(SongArtist artist: songArtists) {
+				System.out.println("Artist name = " + artist.getArtistName() + ";  Album name = " + artist.getAlbumName() +
+						";  Song track = " + artist.getTrack());
+			} 
+		}
+
+		datasource.querySongsMetadata();
+		
+		int count = datasource.getCount(Datasource.TABLE_SONGS);
+		System.out.println("Count: " + count);
+		
+		datasource.createViewForSongArtists();
+
 		datasource.close();
 
 		
