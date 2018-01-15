@@ -33,9 +33,9 @@ public class Main {
 			} 
 		}
 		
-		List<SongArtist> songArtists = datasource.queryArtistForSong("111Go Your Own Way", Datasource.ORDER_BY_ASC);
+		List<SongArtist> songArtists = datasource.queryArtistForSong("Go Your Own Way", Datasource.ORDER_BY_ASC);
 		
-		if (songArtists.size() == 0) {
+		if (songArtists.isEmpty()) {
 			System.out.println("No song");
 		} else {
 			for(SongArtist artist: songArtists) {
@@ -51,9 +51,19 @@ public class Main {
 		
 		datasource.createViewForSongArtists();
 
-		datasource.close();
-
+		songArtists = datasource.querySongInfoView("Go Your Own Way");
 		
+		if (songArtists.isEmpty()) {
+			System.out.println("No song");
+		} else {
+			System.out.println("From VIEW:");
+			for(SongArtist artist: songArtists) {
+				System.out.println("Artist name = " + artist.getArtistName() + ";  Album name = " + artist.getAlbumName() +
+						";  Song track = " + artist.getTrack());
+			} 
+		}
+		
+		datasource.close();
 		
 	}
 
