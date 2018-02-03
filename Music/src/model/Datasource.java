@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -12,7 +13,7 @@ import java.util.List;
 public class Datasource {
 
 	public static final String DB_NAME = "music.db";
-	public static final String CONNECTION_STRING = "jdbc:sqlite:G:\\Program\\Java\\Music\\" + DB_NAME;
+	public static final String CONNECTION_STRING = "jdbc:sqlite:D:\\Program\\Java\\Music\\" + DB_NAME;
 	
 	public static final String TABLE_ALBUMS = "albums"; 
 	public static final String COLUMN_ALBUM_ID = "_id";
@@ -81,13 +82,20 @@ public class Datasource {
 			"SELECT " + COLUMN_ARTIST_NAME + ", " + COLUMN_SONG_ALBUM + ", " + COLUMN_SONG_TRACK + 
 			" FROM " + TABLE_ARTIST_SONG_VIEW + " WHERE " + COLUMN_SONG_TITLE + " = \"";
 	
+	public static final String QUERY_VIEW_SONG_INFO_PREP = 
+			"SELECT " + COLUMN_ARTIST_NAME + ", " + COLUMN_SONG_ALBUM + ", " + COLUMN_SONG_TRACK + 
+			" FROM " + TABLE_ARTIST_SONG_VIEW + " WHERE " + COLUMN_SONG_TITLE + " = ?";
+	
+	
 	private Connection conn;
 	
+	private PreparedStatement querySongInfoOpen;
 	
 	public boolean open() {
 		
 		try {
 			conn = DriverManager.getConnection(CONNECTION_STRING);
+			querySongInfoOpen = conn.prepareStatement(QUERY_VIEW_SONG_INFO_PREP);
 			return true;
 		} catch (SQLException e) {
 			System.out.println("Can't create conection with database" + e.getMessage());
@@ -100,6 +108,10 @@ public class Datasource {
 	public void close() {
 
 		try {
+			if (querySongInfoOpen != null) {
+				querySongInfoOpen.close();
+			}
+			
 			if (conn != null) {
 				conn.close();
 			}
@@ -269,30 +281,27 @@ public class Datasource {
 		
 	}
 
-	public List<SongArtist> querySongInfoView (String title) {
+	public List<SongArtist> querySongInfoView(String title) {
 		
-		StringBuilder sb = new StringBuilder(QUERY_VIEW_SONG_INFO);
-		sb.append(title);
-		sb.append("\";");
-		
-		try (Statement statement = conn.createStatement();
-			ResultSet result = statement.executeQuery(sb.toString()) ) {
-			
+		try {
+			querySongInfoOpen.setString(1, title);
+			ResultSet result = querySongInfoOpen.executeQuery();  
+				
 			List<SongArtist> songArtists = new ArrayList<>();
 			
 			while (result.next()) {
 				SongArtist songArtist = new SongArtist();
-				songArtist.setAlbumName(result.getString(INDEX_ALBUM_NAME));
-				songArtist.setArtistName(result.getString(INDEX_ARTIST_NAME));
-				songArtist.setTrack(result.getInt(INDEX_SONG_TRACK));
+				songArtist.setAlbumName(result.getString(1));
+				songArtist.setArtistName(result.getString(2));
+				songArtist.setTrack(result.getInt(3));
 				songArtists.add(songArtist);
 			}
-			
 			return songArtists;
 		} catch (SQLException e) {
-			System.out.println(" :" + e.getMessage());
-			return null;
+				System.out.println(" :" + e.getMessage());
+				return null;
 		}
+//		try (Statement statement = conn.createStatement();
 		
 	}
 }

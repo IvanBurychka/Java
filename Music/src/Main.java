@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Scanner;
 
 import model.*;
 
@@ -50,10 +51,15 @@ public class Main {
 		System.out.println("Count: " + count);
 		
 		datasource.createViewForSongArtists();
-
-		songArtists = datasource.querySongInfoView("Go Your Own Way");
 		
-		if (songArtists.isEmpty()) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter song title: ");
+		String title = scanner.nextLine();
+		scanner.close();
+		songArtists = datasource.querySongInfoView(title);
+//		songArtists = datasource.querySongInfoView("Go Your Own Way");
+		
+		if (songArtists.size() == 0) {
 			System.out.println("No song");
 		} else {
 			System.out.println("From VIEW:");
