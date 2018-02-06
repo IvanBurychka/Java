@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="514.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+  <columnConstraints>
+      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints halignment="LEFT" hgrow="NEVER" />
+    <ColumnConstraints />
+    <ColumnConstraints halignment="CENTER" />
+      <ColumnConstraints halignment="CENTER" />
+      <ColumnConstraints halignment="CENTER" />
+      <ColumnConstraints halignment="CENTER" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints />
+      <RowConstraints />
+  </rowConstraints>
+   <children>
+      <HBox prefHeight="37.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
+         <children>
+            <Button fx:id="ok1" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleAction" onMouseDragExited="#handleMouseExited" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefWidth="80.0" stylesheets="@application.css" text="OK" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="Help">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" text="Cancel">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+         </children>
+         <GridPane.margin>
+            <Insets left="5.0" right="5.0" />
+         </GridPane.margin>
+      </HBox>
+      <ChoiceBox prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+      <ColorPicker GridPane.columnIndex="5" GridPane.rowIndex="3" />
+      <ColorPicker GridPane.columnIndex="6" GridPane.rowIndex="2" />
+      <DatePicker GridPane.columnIndex="2" GridPane.rowIndex="8" />
+      <Label fx:id="label" text="My Label" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+      <Label fx:id="label2" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+   </children>
+</GridPane>

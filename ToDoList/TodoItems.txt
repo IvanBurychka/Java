@@ -1,0 +1,7 @@
+Mail birthday Card	Buy a 30th birthday card for John	2016-04-25
+Doctors appointment	See dr. Thmith at 123 Main street. Bring paperwork	2016-05-23
+Finish busines design for client	I pormised Mike I'd email website mockups by Friday 22 April	2016-04-22
+Pickup Doug at the train station	Doug arriving March 23 on the 5:00 train	2016-03-23
+Pick up dry cleaning	The clothes should be ready by Wednesday	2016-04-20
+My new todo Item	This a new todo Item description	2018-02-12
+Test new item	This is the new test item	2018-02-05
