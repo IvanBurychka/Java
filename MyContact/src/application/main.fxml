@@ -7,14 +7,21 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<BorderPane fx:id="mainPanel" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
 	<top>
 		<MenuBar>
 			<menus>
 				<Menu text="Contacts">
 					<items>
 						<MenuItem text="Add..." onAction="#showAddContactDialog"/>
+					</items>
+					<items>
+						<MenuItem text="Edit..." onAction="#showEditCOntactDialog"/>
+					</items>
+					<items>
+						<MenuItem text="Delete..." onAction="#deleteContact"/>
 					</items>
 				</Menu>
 			</menus>
@@ -23,6 +30,9 @@
 	
 	<center>
 		<TableView fx:id="contactsTable">
+			<!-- <columnResizePolisy>
+				<TableView fx:constant="CONSTRAINED_RESIZE_POLISY"/>
+			</columnResizePolisy> -->
 			<columns>
 				<TableColumn text="First Name">
 					<cellValueFactory>

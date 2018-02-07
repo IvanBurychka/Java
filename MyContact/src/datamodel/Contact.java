@@ -13,11 +13,11 @@ public class Contact {
 		
 	}
 	
-	public Contact(String firstName, String lastName, String phoneName, String note) {
+	public Contact(String firstName, String lastName, String phoneNumber, String notes) {
 		this.firstName.set(firstName);
 		this.lastName.set(lastName);
-		this.phoneNumber.set(phoneName);
-		this.notes.set(note);
+		this.phoneNumber.set(phoneNumber);
+		this.notes.set(notes);
 	}
 
 	public String getFirstName() {

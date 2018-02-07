@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<contacts>
+<contact>
+	<first_name>Ivan1</first_name>
+	<last_name>Burychka</last_name>
+	<phone_number>111</phone_number>
+	<notes>First Entry</notes>
+</contact>
+<contact>
+	<first_name>Michael</first_name>
+	<last_name>Burychka</last_name>
+	<phone_number>222-3334-24</phone_number>
+	<notes>My Brother</notes>
+</contact>
+<contact>
+	<first_name>Petro</first_name>
+	<last_name>Petro</last_name>
+	<phone_number>1213-4</phone_number>
+	<notes>third data</notes>
+</contact>
+</contacts>
